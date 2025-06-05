@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-lj^3crvzcn82ri$*88salj(ty5r+demsh46dng-(zcim#r4f3b'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'yoyok-backend.herokuapp.com']
 
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'products',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -131,3 +132,9 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     'https://yoyok-frontend.herokuapp.com'
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
+}
