@@ -4,11 +4,11 @@ from .views import ProductViewSet, CategoryViewSet, ReviewViewSet
 
 
 router = DefaultRouter()
-router.register(r'products', ProductViewSet)
-router.register(r'categories', CategoryViewSet)
-router.register(r'reviews', ReviewViewSet)
+router.register(r'products', ProductViewSet, basename='product')
+router.register(r'categories', CategoryViewSet, basename='category')
+router.register(r'reviews', ReviewViewSet, basename='review')
 
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path('api/', include(router.urls)),
 ]
