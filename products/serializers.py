@@ -9,17 +9,18 @@ class CategorySerializer(serializers.ModelSerializer):
 
 class ProductSerializer(serializers.ModelSerializer):
     category = CategorySerializer(read_only=True)
-    category_id = serializers.PrimaryKeyRelatedField(     # for POST/PUT
+    category_id = serializers.PrimaryKeyRelatedField(     
         queryset=Category.objects.all(), source='category', write_only=True
     )
 
     class Meta:
         model = Product
         fields = ['id', 'name', 'description', 'price', 'category', 'category_id', 'image', 'rating']
+        read_only_fields = ['id', 'rating'] 
 
 class ReviewSerializer(serializers.ModelSerializer):
-    user = serializers.StringRelatedField(read_only=True)  # show username
-
+    user = serializers.StringRelatedField(read_only=True) 
+    
     class Meta:
         model = Review
         fields = ['id', 'product', 'user', 'rating', 'comment', 'created_at']
